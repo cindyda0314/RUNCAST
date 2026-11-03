@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RunCast – Weather &amp; Clothing Guide</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Run<span>Cast</span> 🏃</h1>
+    <p class="sub">Real-time weather &amp; air quality analysis with a personalized Running Index</p>
+  </div>
+  <nav aria-label="Main navigation">
+    <a href="index.html" class="active" aria-current="page">🌤 Weather</a>
+    <a href="running.html">📈 My Runs</a>
+  </nav>
+</header>
+
+<main>
+  <section class="card" aria-labelledby="search-h">
+    <h2 id="search-h">Select location (전국 시·군·구)</h2>
+    <form id="searchForm" novalidate>
+      <label class="sr-only" for="sido">Province / metropolitan city</label>
+      <select id="sido"></select>
+      <label class="sr-only" for="sigungu">City / county / district</label>
+      <select id="sigungu"></select>
+      <button type="submit">Check</button>
+      <button type="button" class="ghost" id="favBtn" aria-label="Save to favorites">★ Save</button>
+    </form>
+    <p class="note" id="hint">229 cities, counties and districts nationwide · KMA short-term forecast &amp; AirKorea</p>
+    <div class="chips" id="favs" aria-label="Favorites and recent searches"></div>
+  </section>
+
+  <div id="result" hidden>
+    <div class="grid" style="margin-top:16px">
+      <section class="card score" aria-live="polite" aria-labelledby="score-h">
+        <h2 id="score-h">Running Suitability Index – <span id="place"></span></h2>
+        <div class="ring" id="ring"><div><b id="scoreNum">0</b><small>/ 100</small></div></div>
+        <span class="badge" id="badge"></span>
+        <p id="summary" style="margin:10px 0 0"></p>
+        <div class="stats">
+          <div class="stat"><span>Temperature</span><b id="sTemp"></b></div>
+          <div class="stat"><span>Feels like</span><b id="sFeel"></b></div>
+          <div class="stat"><span>Wind</span><b id="sWind"></b></div>
+          <div class="stat"><span>Humidity</span><b id="sHum"></b></div>
+          <div class="stat"><span>PM10</span><b id="sPm10"></b></div>
+          <div class="stat"><span>PM2.5</span><b id="sPm25"></b></div>
+        </div>
+        <p class="note" id="airStation"></p>
+        <p class="note" id="source"></p>
+      </section>
+
+      <section class="card">
+        <h2>4-level guidance</h2>
+        <div class="levels">
+          <div style="background:var(--g1)">Optimal<br>80–100</div>
+          <div style="background:var(--g2)">Suitable<br>60–79</div>
+          <div style="background:var(--g3)">Caution<br>40–59</div>
+          <div style="background:var(--g4)">Risk<br>0–39</div>
+        </div>
+        <div class="wear" aria-labelledby="wear-h">
+          <div class="wear-head">
+            <h2 id="wear-h">What to wear</h2>
+            <span class="tier" id="tier"></span>
+          </div>
+          <p class="note" id="tierDesc"></p>
+          <div class="gear-grid" id="gear"></div>
+          <div class="tipbox" id="extraTips" aria-live="polite"></div>
+        </div>
+        <a class="cta" href="running.html">Log today's run →</a>
+      </section>
+    </div>
+
+    <section class="card" style="margin-top:16px">
+      <h2>Hourly temperature trend (°C)</h2>
+      <canvas id="chart" role="img" aria-label="Line chart of hourly temperature"></canvas>
+    </section>
+  </div>
+</main>
+<footer class="note">RunCast · Web Programming Final Project · 20240065 Byeon Dabin</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/common.js"></script>
+<script src="js/regions.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RunCast – My Runs</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="top">
+  <div>
+    <h1>Run<span>Cast</span> 🏃</h1>
+    <p class="sub">GPS run tracker · your route drawn live on the map</p>
+  </div>
+  <nav aria-label="Main navigation">
+    <a href="index.html">🌤 Weather</a>
+    <a href="running.html" class="active" aria-current="page">📈 My Runs</a>
+  </nav>
+</header>
+
+<main>
+  <section class="card" aria-labelledby="sum-h">
+    <h2 id="sum-h">Overview</h2>
+    <div class="stats four" id="totals"></div>
+  </section>
+
+  <section class="card" style="margin-top:16px" aria-labelledby="trk-h">
+    <h2 id="trk-h">Run tracker</h2>
+    <div id="liveMap" class="map" role="region" aria-label="Live map"></div>
+    <div class="stats four" style="margin-top:12px" aria-live="off">
+      <div class="stat"><span>Time</span><b id="lTime">00:00</b></div>
+      <div class="stat"><span>Distance</span><b id="lDist">0.00 km</b></div>
+      <div class="stat"><span>Pace</span><b id="lPace">–</b></div>
+      <div class="stat"><span>GPS accuracy</span><b id="lAcc">–</b></div>
+    </div>
+    <div class="fields opts">
+      <label>Weight (kg) – for calories<input id="fWeight" inputmode="decimal" value="65"></label>
+      <label>Avg heart rate (bpm, optional)<input id="fHr" inputmode="numeric" placeholder="159"></label>
+      <label>Cadence (spm, optional)<input id="fCad" inputmode="numeric" placeholder="170"></label>
+    </div>
+    <div class="row">
+      <button type="button" id="startBtn">▶ Start run</button>
+      <button type="button" class="ghost" id="stopBtn" disabled>■ Finish run</button>
+    </div>
+    <p class="note" id="gpsMsg">Press Start and allow location access. GPS needs HTTPS or localhost (e.g. VS Code Live Server) and works best outdoors on a phone.</p>
+  </section>
+
+  <section class="card" style="margin-top:16px" aria-labelledby="det-h" aria-live="polite">
+    <h2 id="det-h">Run detail <span class="note" id="detDate"></span></h2>
+    <div id="empty" class="note">No runs yet. Press “Start run” to record your first one.</div>
+    <div id="detail" hidden>
+      <div class="stats four">
+        <div class="stat"><span>Distance</span><b id="dDist"></b></div>
+        <div class="stat"><span>Time</span><b id="dTime"></b></div>
+        <div class="stat"><span>Avg pace</span><b id="dPace"></b></div>
+        <div class="stat"><span>Calories</span><b id="dKcal"></b></div>
+        <div class="stat"><span>Avg heart rate</span><b id="dHr"></b></div>
+        <div class="stat"><span>Cadence</span><b id="dCad"></b></div>
+        <div class="stat"><span>Elevation gain</span><b id="dElev"></b></div>
+        <div class="stat"><span>Start altitude</span><b id="dAlt"></b></div>
+      </div>
+      <p style="margin:12px 0 6px"><b id="dPlace"></b></p>
+      <div id="detailMap" class="map" role="region" aria-label="Route of the selected run"></div>
+      <p class="note" id="noRoute" hidden>No GPS route was saved for this older record.</p>
+    </div>
+  </section>
+
+  <section class="card" style="margin-top:16px" aria-labelledby="hist-h">
+    <h2 id="hist-h">History</h2>
+    <ul class="runs" id="runList"></ul>
+  </section>
+</main>
+<footer class="note">RunCast · Web Programming Final Project · 20240065 Byeon Dabin · Map © OpenStreetMap contributors</footer>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/common.js"></script>
+<script src="js/running.js"></script>
+</body>
+</html>
